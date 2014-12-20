@@ -69,6 +69,7 @@ class lightHTTPLocalStorageWebServer:
 				else:
 					raise
 		print('Started httpserver on port ', portNumber)
+		self.portNumber = portNumber
 
 	def start(self):
 		self.server.serve_forever()
@@ -105,13 +106,15 @@ class lightHTTPLocalStorageWebServer:
 				# Write, even if the file does not exist yet.
 				#print(self.headers)
 				#print(self.headers['Content-Length'])
-				if self.headers['Content-Type'] == 'application/json;charset=utf-8':
+				if self.headers['Content-Type'].find('application/json') > -1:
 					data = self.rfile.read(int(self.headers['Content-Length'])).decode('utf-8')
 					#print(data)
 					#print(json.loads(data))
 					data = json.loads(data)['data'].encode('utf-8')
 					#print(data)
 				else: # Blob
+					print(self.headers['Content-Type'])
+					print('[received blob:'+self.path+']')
 					data = self.rfile.read(int(self.headers['Content-Length']))
 				#print(varFileName)
 

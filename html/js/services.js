@@ -34,7 +34,7 @@ localGetSetService.service('localGetSet', ['$http',
 			//console.log(variable);
 			if(variable instanceof Object) {
 				dataSent = angular.toJson(JSON.parse(JSON.stringify(variable)), true);
-				//console.log(dataSent);
+				console.log(dataSent);
 			}
 			else {
 				dataSent = variable;
