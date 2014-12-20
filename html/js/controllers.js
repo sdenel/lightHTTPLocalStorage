@@ -68,6 +68,11 @@ mainAppCtrls.controller('mainAppCtrlGarage', ['$scope', 'localGetSet', '$locatio
 					localGetSet.delete('cars/thumbnails/'+String(uniqueId)+'.png');
 				}
 				$scope.garage.splice(garageIndex, 1);
+				angular.forEach($scope.garage, function(value, key) {
+					if($scope.garage[key].thumbnail != false) {
+						$scope.garage[key].thumbnail = true;
+					}
+				});
 				localGetSet.set('garage.json', $scope.garage, function(garage) {
 					//console.log(garage);
 				});
