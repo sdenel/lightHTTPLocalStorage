@@ -1,0 +1,50 @@
+<a href="#/garage">↩ Return to garage</a>
+<span ng-show="carId!=0 && !editMode">
+	 | 
+	<a href="" ng-click="editMode = !editMode">Edit this car</a>
+</span>
+<span ng-show="carId!=0 && editMode">
+	 | 
+	<a href="" ng-show="carId!=0 && editMode" ng-click="editMode = !editMode">Cancel edit mode</a>
+	 | 
+	<a href="" ng-show="carId!=0 && editMode" ng-click="resetForm()">Reset form</a>
+</span>
+<hr />
+<div class="col-sm-2">
+	<div ng-show="editMode">
+		<label class="thumbnailLabel" for="thumbnailLoader">
+			<input type='file' id="thumbnailLoader" onchange="angular.element(this).scope().readURL(this);" style="display:none;"/>
+			<span ng-show="isThumbnailEdit == true">
+				<img id="thumbnailEdit" src="#" alt="Car thumbnail" style="width:100px;height:100px;"/><br />
+				<span class="clickable">Change thumbnail</span><br />
+				<a ng-click="removeThumbnail()">Remove thumbnail</a>
+			</span>
+			<div ng-show="!(isThumbnailEdit==true)" style="width:100px;height:100px;background-color:#E0E0E0; font-weight:bold;display:table-cell; vertical-align:middle; text-align: center;" class="unselectable">
+				<span>Click to set a thumbnail</span>
+			</div>
+		</label><br />
+	</div>
+	<div ng-show="!editMode">
+			<img ng-show="car.thumbnail==true" id="thumbnailNoEdit" src="#" alt="Car thumbnail" style="width:100px;height:100px;"/>
+			<div ng-show="!car.thumbnail==true" style="width:100px;height:100px;background-color:#E0E0E0; font-weight:bold; font-size:small; display:table-cell; vertical-align:middle; text-align: center;">
+				<span>No thumbnail</span>
+			</div>
+	</div>
+</div>
+<div class="col-sm-10">
+	<div>
+		<div ng-repeat="V in detailFields" class="col-sm-12 form-group">
+			<div class="col-sm-3">
+				<label>{{ V.displayedName }}:</label>
+			</div>
+			<div class="col-sm-6">
+				<span ng-show="!editMode" >{{car[V.fieldName]}}</span>
+				<input ng-show="editMode" class="form-control" id="field-{{V.displayedName}}" type="text" ng-model="carEdited[V.fieldName]" placeholder="{{ V.pristineDesc }}" required/>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="col-sm-offset-1 col-sm-11">
+<button ng-show="editMode" class="btn btn-default" ng-click="save()"><u>S</u>ave</button>
+<span style="color:#808080;" ng-show="editMode">You can save using Ctrl+S</span>
+</div>

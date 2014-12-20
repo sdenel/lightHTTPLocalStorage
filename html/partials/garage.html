@@ -1,0 +1,44 @@
+<div ng-show="garageLoaded">
+<h1>A little, locally stored garage</h1>
+	<h2>Current garage</h2>
+	<div ng-show="garage.length>0" class="ng-hide">
+		<table class="table" id="garageList">
+		<thead>
+		<tr>
+			<th></th>
+			<th style="width:33%;vertical-align:top;">Brand name<br /><input class="control-label" type="text" ng-model="garageFilter.brandName" placeholder="Brand name filter"/></th>
+			<th style="width:33%;vertical-align:top;">Name<br /><input class="control-label" type="text" ng-model="garageFilter.name" placeholder="Name filter"/></th>
+		</tr>
+		</thead>
+		<tbody ng-repeat="car in garage|filter:garageFilter">
+		<tr class="car" ng-class="{odd: isOdd($index), even: !isOdd($index)}">
+			<td>
+				<input alt="Click to add this car to the selection" type='checkbox' ng-model="selected[$index]"/>
+			</td>
+			<td ng-click="goTo('/car/'+car.uniqueId)" style="cursor:pointer;">
+				<img ng-show="car.thumbnail != false" ng-src="{{car.thumbnail}}" style="width:50px;height:50px;"/>
+				<div ng-show="car.thumbnail == false" style="width:50px;height:50px;background-color:#E0E0E0">&nbsp;</div>
+			</td>
+			<td ng-click="goTo('/car/'+car.uniqueId)" style="cursor:pointer;">
+				{{ car.brandName }}
+			</td>
+			<td ng-click="goTo('/car/'+car.uniqueId)" style="cursor:pointer;">
+				{{ car.name }}
+			</td>
+			<td>
+				<a href="#/car/{{car.uniqueId}}">See details</a>
+				 | 
+				<a ng-click="deleteLayerSingle($index, car.uniqueId);">Delete</a>
+			</td>
+		</tr>
+		</tbody>
+		</table>
+		<span style="font-weight:bold;" ng-show="!isSelectionEmpty" class="ng-hide">
+		For the selection: <a ng-click="deleteLayerMultiple();">delete</a>
+		</span>
+	</div>
+	<span ng-hide="garage.length">The garage is currently empty.</span>
+
+<a href="#/car/0">Add a new car</a>
+
+</div>

@@ -1,0 +1,110 @@
+html {
+	width:80%;
+	margin:auto;
+}
+
+a, a:visited, a:hover {
+	color:blue;
+	cursor:pointer;
+}
+
+.ng-hide {
+	line-height: 0;
+	opacity: 0;
+	padding: 0 10px;
+}
+
+.ng-hide-add-active, .ng-hide-remove-active {
+	-webkit-transition: all linear 0.2s;
+	transition: all linear 0.2s;
+}
+
+#newCarForm .ng-invalid.ng-dirty {
+	border-color:red;
+}
+
+#newCarForm .ng-valid.ng-dirty {
+	border-color:green;
+}
+
+#garageList td {
+	vertical-align:middle;
+}
+
+#garageList tr.even {
+	background-color:#F5F5F5;
+}
+
+#garageList tr.odd {
+	
+}
+
+#garageList tr.car:hover {
+	background-color:#E5E5E5;
+}
+
+
+
+
+/*
+ * For animation purposes
+ */
+
+#garageList .ng-enter,
+#garageList .ng-leave,
+#garageList .ng-move {
+  -webkit-transition: 0.2s linear all;
+  -moz-transition: 0.2s linear all;
+  -o-transition: 0.2s linear all;
+  transition: 0.2s linear all;
+}
+
+#garageList .ng-enter,
+#garageList .ng-move {
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+#garageList .ng-move.ng-move-active,
+#garageList .ng-enter.ng-enter-active {
+  opacity: 1;
+  /* height: 120px; */
+}
+
+#garageList .ng-leave {
+  opacity: 1;
+  overflow: hidden;
+}
+
+#garageList .ng-leave.ng-leave-active {
+  opacity: 0;
+  height: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+
+/*
+ * For car details
+ */
+
+.thumbnailLabel {
+	color:blue;
+	cursor:pointer;
+	font-size:small; 
+}
+
+.clickable:hover {
+	text-decoration:underline;
+}
+
+.unselectable {
+	-webkit-user-select: none; /* Chrome/Safari */        
+	-moz-user-select: none; /* Firefox */
+	-ms-user-select: none; /* IE10+ */
+
+	/* Rules below not implemented in browsers yet */
+	-o-user-select: none;
+	user-select: none;
+}

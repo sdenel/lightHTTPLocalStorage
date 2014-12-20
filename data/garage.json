@@ -1,0 +1,20 @@
+[
+  {
+    "brandName": "Tesla",
+    "name": "Model S",
+    "thumbnail": true,
+    "uniqueId": 1
+  },
+  {
+    "brandName": "Dacia",
+    "name": "Duster",
+    "thumbnail": true,
+    "uniqueId": 2
+  },
+  {
+    "brandName": "Renault",
+    "name": "Zoe",
+    "thumbnail": true,
+    "uniqueId": "3"
+  }
+]
