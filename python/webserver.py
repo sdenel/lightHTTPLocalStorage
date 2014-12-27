@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#! /usr/bin/env python
 
 # Launch doctest with: python3 -m doctest launcher.py
 
