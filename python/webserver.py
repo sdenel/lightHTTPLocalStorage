@@ -2,8 +2,13 @@
 
 # Launch doctest with: python3 -m doctest launcher.py
 
-from http.server import BaseHTTPRequestHandler,HTTPServer
-import os, json, webbrowser, shutil
+
+import os, json, sys, shutil
+if sys.version_info >= (3, 0): #Python3
+        from http.server import BaseHTTPRequestHandler, HTTPServer
+else: #Python2
+        from BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer
+        
 portNumber = 8080
 
 workingDir = os.path.join(os.path.dirname(os.path.realpath(__file__)), '../')
@@ -68,7 +73,6 @@ class lightHTTPLocalStorageWebServer:
 					print("Warning: port ", portNumber-1, " already used, trying port ", portNumber)
 				else:
 					raise
-		print('Started httpserver on port ', portNumber)
 		self.portNumber = portNumber
 
 	def start(self):
@@ -113,8 +117,8 @@ class lightHTTPLocalStorageWebServer:
 					data = json.loads(data)['data'].encode('utf-8')
 					#print(data)
 				else: # Blob
-					print(self.headers['Content-Type'])
-					print('[received blob:'+self.path+']')
+					#print(self.headers['Content-Type'])
+					#print('[received blob:'+self.path+']')
 					data = self.rfile.read(int(self.headers['Content-Length']))
 				#print(varFileName)
 
@@ -171,7 +175,7 @@ class lightHTTPLocalStorageWebServer:
 					self.send_response(200)
 					self.send_header('Content-type', 'text/plain')
 					self.end_headers()
-					self.wfile.write(bytes('OK', 'UTF-8'))
+					self.wfile.write("OK")
 				else:
 					try:
 						self.send_response(200)
